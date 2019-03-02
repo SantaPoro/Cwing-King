@@ -5,6 +5,7 @@
 #include "snake.h"
 #include "platform_init.h"
 #include "platform.h"
+#include "obstacle.h"
 
 void update();
 void render();
@@ -17,6 +18,8 @@ void main(void)
 	
 	initSnake(&snake);
 	initGraphics();
+    
+    createObstecle();
 		
 	while (1)
 	{
@@ -48,4 +51,5 @@ void render()
 {
 	// Render to buffer
 	snake.render(&snake);
+    obstaclesRender();
 }
