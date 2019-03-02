@@ -45,6 +45,7 @@ void update()
 {
 	// The update loop
 	snake.update(&snake);
+	updateObstacles(&snake);
 }
 
 void render()

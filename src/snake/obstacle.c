@@ -1,4 +1,6 @@
 #include <obstacle.h>
+#include "snake.h"
+#include "graphics.h"
 
 obstacle obstacles[10];
 unsigned int nObsticals = 0;
@@ -16,17 +18,31 @@ static void render(obstacle *this)
 
 }
 
+static void updateObstacle(obstacle* this, Snake* snake)
+{
+	
+}
+
+void updateObstacles(Snake* snake)
+{
+	for(int i=0; i<nObsticals; ++i)
+    {
+        obstacles[i].update(&obstacles[i], snake);
+    }
+}
+
 void initObstecle(obstacle *current)
 {
     //64 32 to place in middle of screen.
     current->xPos=64;
     current->yPos = 32;
     current->render = render;
+	current->update = updateObstacle;
     current->width = 8;
     current->hight = 16;
 } 
 
-obstacle createObstecle()
+void createObstecle()
 {
     initObstecle(&obstacles[nObsticals++]);
 }
