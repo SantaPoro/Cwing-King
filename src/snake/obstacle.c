@@ -18,9 +18,28 @@ static void render(obstacle *this)
 
 }
 
+static void DetectCollision(int x, int y, obstacle* this)
+{
+
+    if(((x < (this->xPos + this->width)) && (x > this->xPos)) && ((y < this->yPos) && (y > (this->yPos - this->hight))))
+    {
+        int test = 2;
+    } 
+}
+
 static void updateObstacle(obstacle* this, Snake* snake)
 {
-	
+    int corners[2][4] = {
+                        {snake->xPos,snake->yPos},                              //Buttom left corner
+                        {snake->xPos + snake->size, snake->size},               //Buttom right corner
+                        {snake->xPos, snake->yPos - snake->size},               //Top left corner
+                        {snake->xPos+ snake->size, snake->yPos - snake->size}   //Top right corner
+                        };
+                        
+	for(int c=0; c<4; ++c) 
+    {
+        DetectCollision(corners[1][c], corners[2][c], this);
+    }
 }
 
 void updateObstacles(Snake* snake)
