@@ -1,6 +1,7 @@
 #include <obstacle.h>
 #include "snake.h"
 #include "graphics.h"
+#include "asciidisplay.h"
 
 obstacle obstacles[10];
 unsigned int nObsticals = 0;
@@ -23,7 +24,7 @@ static void DetectCollision(int x, int y, obstacle* this)
     
     if(((x <= (this->xPos + this->width)) && (x >= this->xPos)) && ((y <= this->yPos) && (y >= (this->yPos - this->hight))))
     {
-
+        displayAscii("hit!");
     } 
 }
 
