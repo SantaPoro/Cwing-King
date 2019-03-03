@@ -12,7 +12,7 @@ static void render(obstacle *this)
     {
         for(int w=0; w<this->width; ++w) 
         {
-            setPixel(this->xPos+w,this->yPos+h,1);   
+            setPixel(this->xPos+w,this->yPos-h,1);   
         }
     }
 
@@ -21,7 +21,7 @@ static void render(obstacle *this)
 static void DetectCollision(int x, int y, obstacle* this)
 {
 
-    if(((x < (this->xPos + this->width)) && (x > this->xPos)) && ((y < this->yPos) && (y > (this->yPos - this->hight))))
+    if(((x <= (this->xPos + this->width)) && (x >= this->xPos)) && ((y <= this->yPos) && (y >= (this->yPos - this->hight))))
     {
         int test = 2;
     } 
@@ -29,16 +29,16 @@ static void DetectCollision(int x, int y, obstacle* this)
 
 static void updateObstacle(obstacle* this, Snake* snake)
 {
-    int corners[2][4] = {
+    int corners[4][2] = {
                         {snake->xPos,snake->yPos},                              //Buttom left corner
-                        {snake->xPos + snake->size, snake->size},               //Buttom right corner
+                        {snake->xPos + snake->size, snake->yPos},               //Buttom right corner
                         {snake->xPos, snake->yPos - snake->size},               //Top left corner
                         {snake->xPos+ snake->size, snake->yPos - snake->size}   //Top right corner
                         };
                         
 	for(int c=0; c<4; ++c) 
     {
-        DetectCollision(corners[1][c], corners[2][c], this);
+        DetectCollision(corners[c][0], corners[c][1], this);
     }
 }
 
@@ -53,8 +53,8 @@ void updateObstacles(Snake* snake)
 void initObstecle(obstacle *current)
 {
     //64 32 to place in middle of screen.
-    current->xPos=64;
-    current->yPos = 32;
+    current->xPos=24;
+    current->yPos = 45;
     current->render = render;
 	current->update = updateObstacle;
     current->width = 8;
