@@ -20,15 +20,16 @@ static void render(obstacle *this)
 
 static void DetectCollision(int x, int y, obstacle* this)
 {
-
+    
     if(((x <= (this->xPos + this->width)) && (x >= this->xPos)) && ((y <= this->yPos) && (y >= (this->yPos - this->hight))))
     {
-        int test = 2;
+
     } 
 }
 
 static void updateObstacle(obstacle* this, Snake* snake)
 {
+    //the collision now happens when they overlap if you want it to happen before change here
     int corners[4][2] = {
                         {snake->xPos,snake->yPos},                              //Buttom left corner
                         {snake->xPos + snake->size, snake->yPos},               //Buttom right corner
@@ -36,6 +37,7 @@ static void updateObstacle(obstacle* this, Snake* snake)
                         {snake->xPos+ snake->size, snake->yPos - snake->size}   //Top right corner
                         };
                         
+    //checks if any of the players 4 corers overlap with the obstacle 
 	for(int c=0; c<4; ++c) 
     {
         DetectCollision(corners[c][0], corners[c][1], this);
