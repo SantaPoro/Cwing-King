@@ -38,6 +38,7 @@ void main(void)
 
 		// 30fps -> 1/30 = 33ms each frame
 		delayMilliSecs(33); // Somewhat target 30 fps.
+		delayMilliSecs(60); //tempdelay
 	}
 
 	

@@ -32,10 +32,10 @@ static void updateObstacle(obstacle* this, Snake* snake)
 {
     //the collision now happens when they overlap if you want it to happen before change here
     int corners[4][2] = {
-                        {snake->xPos,snake->yPos},                              //Buttom left corner
+                        {snake->xPos,snake->yPos},                              //Buttom left corner !not matching corners!
                         {snake->xPos + snake->size, snake->yPos},               //Buttom right corner
-                        {snake->xPos, snake->yPos - snake->size},               //Top left corner
-                        {snake->xPos+ snake->size, snake->yPos - snake->size}   //Top right corner
+                        {snake->xPos, snake->yPos + snake->size},               //Top left corner
+                        {snake->xPos+ snake->size, snake->yPos + snake->size}   //Top right corner
                         };
                         
     //checks if any of the players 4 corers overlap with the obstacle 
